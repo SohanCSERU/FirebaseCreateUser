@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427494996411",
+    "project_id": "auth-bfdb4",
+    "storage_bucket": "auth-bfdb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427494996411:android:78dd82cabf295ae1cfac9e",
+        "android_client_info": {
+          "package_name": "com.example.firebasecreateuser"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427494996411-16u0kc3fai70ubr8fpgv7p4g2o95jkip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdXAgCzShYAUlJxUq0h7A5xMEr6Zyqqrs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427494996411-16u0kc3fai70ubr8fpgv7p4g2o95jkip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
