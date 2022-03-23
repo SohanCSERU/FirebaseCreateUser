@@ -88,8 +88,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                         Toast.makeText(RegistrationActivity.this,"User Successfully Regestrated",Toast.LENGTH_LONG).show();
 
                                         //Login Redirect
-                                        Intent i = new Intent(RegistrationActivity.this, MainActivity.class);
-                                        startActivity(i);
+                                        startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
                                     }
                                     else{
                                         Toast.makeText(RegistrationActivity.this,"Failed To  Regestrated",Toast.LENGTH_LONG).show();
