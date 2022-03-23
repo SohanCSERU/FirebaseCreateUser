@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity{
 
         loadingPB = (ProgressBar) findViewById(R.id.idPBLoading);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             //redirecte to user profile
-                            startActivity(new Intent(MainActivity.this,ProfileActivity.class));
+                            startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
                         }
                         else{
                             Toast.makeText(MainActivity.this,"Failed to login!",Toast.LENGTH_LONG).show();
