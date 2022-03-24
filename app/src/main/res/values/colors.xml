@@ -16,7 +16,7 @@
 <!--    used for background-->
     <color name="white_shade_1">#FFFFFF</color>
     <color name="text_color">#000000</color>
-
+    <color name="gray_color">#616161</color>
 
     <color name="white_shade_2">#1C4966</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:overrise="ture">#D3D3D3</color>

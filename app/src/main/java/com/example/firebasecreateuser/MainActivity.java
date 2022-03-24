@@ -22,78 +22,43 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity{
 
-    private TextInputEditText userNameEdt, passwordEdt;
-    private Button loginBtn;
-    private TextView newUserTV;
-    private FirebaseAuth mAuth;
-    private ProgressBar loadingPB;
+    private Button search_blood_button;
 
-    private TextView registerbtn;
+    private TextView login_at_home,register_at_home;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        registerbtn = (TextView) findViewById(R.id.idTVNewUser);
-        loginBtn = (Button)findViewById(R.id.idBtnLogin);
+        search_blood_button =(Button) findViewById(R.id.search_blood);
+        login_at_home =(TextView) findViewById(R.id.login_at_home);
+        register_at_home =(TextView) findViewById(R.id.register_at_home);
 
-        userNameEdt = findViewById(R.id.idEdtUserName);
-        passwordEdt = findViewById(R.id.idEdtPassword);
-
-        loadingPB = (ProgressBar) findViewById(R.id.idPBLoading);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        login_at_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = userNameEdt.getText().toString().trim();
-                String password = passwordEdt.getText().toString().trim();
-
-                if(name.isEmpty()){
-                    userNameEdt.setError("Email is required!");
-                    userNameEdt.requestFocus();
-                    return;
-                }
-                if (!Patterns.EMAIL_ADDRESS.matcher(name).matches()){
-                    userNameEdt.setError("Please Enter a valid email !");
-                    userNameEdt.requestFocus();
-                    return;
-                }
-                if(password.isEmpty()){
-                    passwordEdt.setError("Password is Required!");
-                    passwordEdt.requestFocus();
-                    return;
-                }
-
-                loadingPB.setVisibility(view.VISIBLE);
-
-                mAuth.createUserWithEmailAndPassword(name,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            //redirecte to user profile
-                            startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
-                        }
-                        else{
-                            Toast.makeText(MainActivity.this,"Failed to login!",Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-            }
-        });
-
-        registerbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // on below line opening a login activity.
-                Intent i = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent i  = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });
 
-    }
+        register_at_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i  = new Intent(MainActivity.this, RegistrationActivity.class);
+                startActivity(i);
+            }
+        });
 
+
+        search_blood_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i  = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(i);
+            }
+        });
+    }
 }

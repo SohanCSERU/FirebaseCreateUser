@@ -43,7 +43,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
         loginbtn_below.setOnClickListener(new View.OnClickListener() {
-            @Override
+                @Override
             public void onClick(View view) {
                 // on below line opening a login activity.
                 Intent i = new Intent(RegistrationActivity.this, MainActivity.class);
