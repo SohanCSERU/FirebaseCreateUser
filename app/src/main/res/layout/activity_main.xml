@@ -1,122 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_shade_1"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/login_user"
-        android:text="Log in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
-        android:padding="5dp"
-        android:textSize="25dp"
-        android:gravity="center"
-        android:textColor="@color/title_color"
-        >
-
-    </TextView>
-
-    <!--edit text for user name-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idTILUserName"
-        style="@style/LoginTextInputLayoutStyle"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/login_user"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Enter User Name"
-        android:padding="5dp"
-        android:textColorHint="@color/text_color"
-        app:hintTextColor="@color/text_color">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/idEdtUserName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:textSize="14sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!--edit text for password-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/idTILPassword"
-        style="@style/LoginTextInputLayoutStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idTILUserName"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="20dp"
-        android:hint="Enter your Password"
-        android:padding="5dp"
-        android:textColorHint="@color/text_color"
-        app:hintTextColor="@color/text_color">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/idEdtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:importantForAutofill="no"
-            android:inputType="textPassword"
-            android:textColor="@color/text_color"
-            android:textColorHint="@color/text_color"
-            android:textSize="14sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!--button for login-->
-    <Button
-        android:id="@+id/idBtnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idTILPassword"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="25dp"
-        android:background="@drawable/custom_button_back"
-        android:text="Log in"
-        android:textAllCaps="false"
-        />
-
-    <!--text view for creating a new account-->
-    <TextView
-        android:id="@+id/idTVNewUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/idBtnLogin"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="New User ? Register Here"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="18sp" />
-
-    <!--progress-bar for loading indicator-->
-    <ProgressBar
-        android:id="@+id/idPBLoading"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idTVNewUser"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/progress_back"
-        android:visibility="gone" />
+        app:srcCompat="@drawable/blood_donation"
+        android:scaleType="fitCenter"
+        />
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:layout_gravity="top"
+            android:text="Blood Bank"
+            android:textColor="@color/black"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/search_blood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="250dp"
+            android:layout_below="@+id/title"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/custom_button_back"
+            android:text="Search for Blood"
+            android:textAllCaps="false"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/or_spacing"
+            android:layout_below="@+id/search_blood"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="or"
+            android:textColor="@color/gray_color"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/login_at_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/or_spacing"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Login User"
+            android:textColor="@color/gray_color"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/register_at_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login_at_home"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Don't Account? Create One !"
+            android:textColor="@color/gray_color"
+            android:textSize="18dp" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

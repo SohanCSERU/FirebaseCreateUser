@@ -6,25 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_shade_1"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
+    <!--edit text for user name-->
     <TextView
         android:id="@+id/login_user"
-        android:text="Log in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="20dp"
-        android:padding="5dp"
-        android:textSize="25dp"
         android:gravity="center"
+        android:padding="5dp"
+        android:text="Log in"
         android:textColor="@color/title_color"
-        >
+        android:textStyle="bold"
+        android:textSize="25dp">
 
     </TextView>
 
-    <!--edit text for user name-->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/idTILUserName"
         style="@style/LoginTextInputLayoutStyle"
@@ -36,8 +36,8 @@
         android:layout_marginEnd="20dp"
         android:hint="Enter User Name"
         android:padding="5dp"
-        android:textColorHint="@color/white"
-        app:hintTextColor="@color/white">
+        android:textColorHint="@color/text_color"
+        app:hintTextColor="@color/text_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/idEdtUserName"
@@ -46,8 +46,8 @@
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,8 +63,8 @@
         android:layout_marginEnd="20dp"
         android:hint="Enter your Password"
         android:padding="5dp"
-        android:textColorHint="@color/white"
-        app:hintTextColor="@color/white">
+        android:textColorHint="@color/text_color"
+        app:hintTextColor="@color/text_color">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/idEdtPassword"
@@ -73,8 +73,8 @@
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color"
             android:textSize="14sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +88,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="25dp"
         android:background="@drawable/custom_button_back"
-        android:text="Login"
+        android:text="Log in"
         android:textAllCaps="false"
         />
 
@@ -104,7 +104,7 @@
         android:text="New User ? Register Here"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/text_color"
         android:textSize="18sp" />
 
     <!--progress-bar for loading indicator-->
