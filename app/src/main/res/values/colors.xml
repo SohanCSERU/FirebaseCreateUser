@@ -20,4 +20,9 @@
 
     <color name="white_shade_2">#1C4966</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:overrise="ture">#D3D3D3</color>
+
+<!--    Maps Color-->
+    <color name="button_Color">#E80000</color>
+    <color name="text_view_color">#FFFFFF</color>
+
 </resources>
