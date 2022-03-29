@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText editTextName,editTextEmail,editTextPassword,editTextCnfPassword,editPhoneNumber,editLatDonDate,editBloodGroup;
-    private TextView loginbtn_below;
+    private TextView loginbtn_below,setLatitudeBtn,setLongitudeBtn;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private Button register_btn,map_add_button;
@@ -45,17 +45,28 @@ public class RegistrationActivity extends AppCompatActivity {
         editBloodGroup = (EditText)findViewById(R.id.idEdtUserBloodGroup);
 
         register_btn = (Button)findViewById(R.id.idBtnRegister);
-        map_add_button = (Button)findViewById(R.id.idBtnAddLocMap);
+//        map_add_button = (Button)findViewById(R.id.idBtnAddLocMap);
 
         progressBar = (ProgressBar)findViewById(R.id.idPBLoading);
 
-        map_add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(RegistrationActivity.this,MapsActivity.class);
-                startActivity(i);
-            }
-        });
+//        new Operation added
+        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
+        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
+
+        Intent intent = getIntent();
+        String text_lat = intent.getStringExtra(MapsActivity.LATITUDE);
+        String text_lon = intent.getStringExtra(MapsActivity.LONGITUDE);
+
+        setLatitudeBtn.setText(text_lat);
+        setLongitudeBtn.setText(text_lon);
+
+//        map_add_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(RegistrationActivity.this,MapsActivity.class);
+//                startActivity(i);
+//            }
+//        });
 
         loginbtn_below.setOnClickListener(new View.OnClickListener() {
                 @Override

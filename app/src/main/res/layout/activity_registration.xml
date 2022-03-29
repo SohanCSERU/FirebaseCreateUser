@@ -223,19 +223,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--button for Location Add Activity.-->
-        <Button
-            android:id="@+id/idBtnAddLocMap"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/idTILConfirmPassword"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="25dp"
-            android:background="@drawable/custom_button_back"
-            android:drawableRight="@drawable/ic_add_location"
-            android:paddingRight="50dp"
-            android:text="Add Your Location"
-            android:textAllCaps="false" />
+<!--        <Button-->
+<!--            android:id="@+id/idBtnAddLocMap"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/idTILConfirmPassword"-->
+<!--            android:layout_marginStart="25dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginEnd="25dp"-->
+<!--            android:background="@drawable/custom_button_back"-->
+<!--            android:drawableRight="@drawable/ic_add_location"-->
+<!--            android:paddingRight="50dp"-->
+<!--            android:text="Add Your Location"-->
+<!--            android:textAllCaps="false" />-->
 
 
         <!--button for creating user account.-->
@@ -243,7 +243,7 @@
             android:id="@+id/idBtnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/idBtnAddLocMap"
+            android:layout_below="@id/idTILConfirmPassword"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
@@ -262,6 +262,32 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="Already a User ? Login Here"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/idLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVLoginUser"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/idLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idLatitude"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:padding="10dp"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="@color/text_color"
