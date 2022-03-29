@@ -98,9 +98,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 final double lat = latLng.latitude;
                 final double lo=latLng.longitude;
 
+                String xx = Double.toString(lat);
+                String yy = Double.toString(lo);
+
+
                 Intent in = new Intent(MapsActivity.this,RegistrationActivity.class);
-                in.putExtra(LATITUDE,lat);
-                in.putExtra(LONGITUDE,lo);
+                in.putExtra(LATITUDE,xx);
+                in.putExtra(LONGITUDE,yy);
 
 //                databaseReference.child("latitude").setValue(lat);
 //                databaseReference.child("longitude").setValue(lo);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String text_lat = intent.getStringExtra(MapsActivity.LATITUDE);
         String text_lon = intent.getStringExtra(MapsActivity.LONGITUDE);
+
 
         setLatitudeBtn.setText(text_lat);
         setLongitudeBtn.setText(text_lon);
