@@ -18,13 +18,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText editTextName,editTextPassword,editTextCnfPassword;
+    private EditText editTextName,editTextEmail,editTextPassword,editTextCnfPassword,editPhoneNumber,editLatDonDate,editBloodGroup;
     private TextView loginbtn_below;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
-    private Button register_btn;
+    private Button register_btn,map_add_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,27 @@ public class RegistrationActivity extends AppCompatActivity {
 
         loginbtn_below = (TextView) findViewById(R.id.idTVLoginUser);
         mAuth = FirebaseAuth.getInstance();
+
         editTextName = (EditText)findViewById(R.id.idEdtUserName);
         editTextPassword = (EditText)findViewById(R.id.idEdtPassword);
         editTextCnfPassword = (EditText)findViewById(R.id.idEdtConfirmPassword);
-        register_btn = (Button)findViewById(R.id.idBtnRegister);
+        editTextEmail = (EditText)findViewById(R.id.idEdtUserEmail);
+        editPhoneNumber = (EditText)findViewById(R.id.idEdtUserPhone);
+        editLatDonDate = (EditText)findViewById(R.id.idEdtUserLastDon);
+        editBloodGroup = (EditText)findViewById(R.id.idEdtUserBloodGroup);
 
+        register_btn = (Button)findViewById(R.id.idBtnRegister);
+        map_add_button = (Button)findViewById(R.id.idBtnAddLocMap);
 
         progressBar = (ProgressBar)findViewById(R.id.idPBLoading);
 
+        map_add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RegistrationActivity.this,MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
         loginbtn_below.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -55,11 +70,21 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = editTextName.getText().toString().trim();
+                String email = editTextEmail.getText().toString().trim();
+                String phone = editPhoneNumber.getText().toString().trim();
+                String blood_group = editBloodGroup.getText().toString().trim();
+                String last_donation_date= editLatDonDate.getText().toString().trim();
+
                 String password = editTextPassword.getText().toString().trim();
                 String cnfPassword = editTextCnfPassword.getText().toString().trim();
                 if (name.isEmpty()){
                     editTextName.setText("Name is empty");
                     editTextName.requestFocus();
+                    return;
+                }
+                if (email.isEmpty()){
+                    editTextEmail.setText("Email is empty");
+                    editTextEmail.requestFocus();
                     return;
                 }
                 if (!password.equals(cnfPassword)){
@@ -69,15 +94,18 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
-
-
                 progressBar.setVisibility(view.GONE);
-                mAuth.createUserWithEmailAndPassword(name,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            User user = new User(name,password);
-
+                            User user = new User(name,
+                                    email,
+                                    phone,
+                                    blood_group,
+                                    last_donation_date,
+                                    password);
                             FirebaseDatabase.getInstance().getReference("User")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

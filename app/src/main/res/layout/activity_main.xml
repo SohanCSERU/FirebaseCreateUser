@@ -37,10 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="250dp"
             android:layout_below="@+id/title"
             android:layout_marginEnd="25dp"
             android:background="@drawable/custom_button_back"
+            android:drawableRight="@drawable/ic_search_blood"
             android:text="Search for Blood"
             android:textAllCaps="false"
             android:textSize="18dp" />
@@ -54,7 +56,7 @@
             android:padding="10dp"
             android:text="or"
             android:textColor="@color/gray_color"
-            android:textSize="15dp" />
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/login_at_home"
@@ -62,10 +64,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/or_spacing"
             android:gravity="center"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="Login User"
             android:textColor="@color/gray_color"
-            android:textSize="18dp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/register_at_home"
@@ -73,10 +75,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_at_home"
             android:gravity="center"
-            android:padding="10dp"
-            android:text="Don't Account? Create One !"
+            android:padding="5dp"
+            android:text="Don't have Account? Create One !"
             android:textColor="@color/gray_color"
-            android:textSize="18dp" />
+            android:textSize="15sp" />
 
 
     </RelativeLayout>
