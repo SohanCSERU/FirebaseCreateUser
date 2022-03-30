@@ -29,12 +29,26 @@
 
         </TextView>
 
+        <TextView
+            android:id="@+id/location_added_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textStart"
+            android:padding="2dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@+id/register_title"
+            android:text="Location added Successfully!"
+            android:textColor="@color/transperent_green"
+            android:textStyle="bold"
+            />
+
         <!--edit text for user name-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/idTILUserName"
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
-            android:layout_below="@id/register_title"
+            android:layout_below="@id/location_added_msg"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
