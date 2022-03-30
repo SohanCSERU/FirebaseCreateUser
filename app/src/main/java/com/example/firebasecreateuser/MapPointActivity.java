@@ -37,7 +37,7 @@ public class MapPointActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot snap: snapshot.getChildren()){
-                    list.add(snap.getValue().toString());
+                    list.add(snap.getKey());
                 }
                 adapter.notifyDataSetChanged();
             }
