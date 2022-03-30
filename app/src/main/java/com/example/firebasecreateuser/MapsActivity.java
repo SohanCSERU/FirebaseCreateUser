@@ -114,7 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 add_location.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent in = new Intent(MapsActivity.this,MapPointActivity.class);
+                        Intent in = new Intent(MapsActivity.this,RegistrationActivity.class);
                         in.putExtra("LATITUDE",xx);
                         in.putExtra("LONGITUDE",yy);
                         startActivity(in);

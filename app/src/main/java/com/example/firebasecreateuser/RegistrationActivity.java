@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -27,7 +28,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private Button register_btn,map_add_button;
-
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,25 +51,17 @@ public class RegistrationActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar)findViewById(R.id.idPBLoading);
 
-//        new Operation added
-//        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
-//        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
-//
-//        Intent intent = getIntent();
-//        String text_lat = intent.getStringExtra(MapsActivity.LATITUDE);
-//        String text_lon = intent.getStringExtra(MapsActivity.LONGITUDE);
-//
-//
-//        setLatitudeBtn.setText(text_lat);
-//        setLongitudeBtn.setText(text_lon);
 
-//        map_add_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(RegistrationActivity.this,MapsActivity.class);
-//                startActivity(i);
-//            }
-//        });
+
+        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
+        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
+
+        String text_lat = getIntent().getStringExtra("LATITUDE");
+        String text_lon = getIntent().getStringExtra("LONGITUDE");
+
+        setLatitudeBtn.setText(text_lat);
+        setLongitudeBtn.setText(text_lon);
+
 
         loginbtn_below.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -118,7 +111,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                     phone,
                                     blood_group,
                                     last_donation_date,
-                                    password);
+                                    password,text_lat,text_lon);
+
                             FirebaseDatabase.getInstance().getReference("User")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
