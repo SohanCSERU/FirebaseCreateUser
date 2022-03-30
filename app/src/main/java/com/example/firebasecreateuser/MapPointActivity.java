@@ -1,27 +1,52 @@
 package com.example.firebasecreateuser;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MapPointActivity extends AppCompatActivity {
 
-    TextView text_to_show;
-    TextView text_to_show1;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        text_to_show = (TextView) findViewById(R.id.hello_world);
-        text_to_show1 = (TextView) findViewById(R.id.hello_world1);
+        listView = findViewById(R.id.list_item);
 
-        String sessionId = getIntent().getStringExtra("LATITUDE");
-        String ses = getIntent().getStringExtra("LONGITUDE");
+        ArrayList<String> list = new ArrayList<>();
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.list_item, list);
+        listView.setAdapter(adapter);
 
-        text_to_show.setText(sessionId);
-        text_to_show1.setText(ses);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    list.add(snap.getValue().toString());
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 }
