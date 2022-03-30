@@ -51,16 +51,16 @@ public class RegistrationActivity extends AppCompatActivity {
         progressBar = (ProgressBar)findViewById(R.id.idPBLoading);
 
 //        new Operation added
-        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
-        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
-
-        Intent intent = getIntent();
-        String text_lat = intent.getStringExtra(MapsActivity.LATITUDE);
-        String text_lon = intent.getStringExtra(MapsActivity.LONGITUDE);
-
-
-        setLatitudeBtn.setText(text_lat);
-        setLongitudeBtn.setText(text_lon);
+//        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
+//        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
+//
+//        Intent intent = getIntent();
+//        String text_lat = intent.getStringExtra(MapsActivity.LATITUDE);
+//        String text_lon = intent.getStringExtra(MapsActivity.LONGITUDE);
+//
+//
+//        setLatitudeBtn.setText(text_lat);
+//        setLongitudeBtn.setText(text_lon);
 
 //        map_add_button.setOnClickListener(new View.OnClickListener() {
 //            @Override

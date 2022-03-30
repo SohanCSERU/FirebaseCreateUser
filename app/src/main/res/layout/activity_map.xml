@@ -7,10 +7,15 @@
     tools:context=".MapPointActivity">
 
     <TextView
+        android:id="@+id/hello_world"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello world"
         android:gravity="center"
+        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/hello_world1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:textSize="20dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

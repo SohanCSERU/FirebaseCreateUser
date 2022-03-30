@@ -25,8 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    public static String LATITUDE = "latitude";
-    public static String LONGITUDE = "longitude";
+//    public static String LATITUDE = "latitude";
+//    public static String LONGITUDE = "longitude";
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -49,13 +49,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        add_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MapsActivity.this,RegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
+//        add_location.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MapsActivity.this,MapPointActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     /**
@@ -102,9 +102,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String yy = Double.toString(lo);
 
 
-                Intent in = new Intent(MapsActivity.this,RegistrationActivity.class);
-                in.putExtra(LATITUDE,xx);
-                in.putExtra(LONGITUDE,yy);
 
 //                databaseReference.child("latitude").setValue(lat);
 //                databaseReference.child("longitude").setValue(lo);
@@ -112,6 +109,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Toast.makeText(getApplicationContext(),
                         "New marker added: " + lat+ " Longitude point: "+ lo, Toast.LENGTH_LONG)
                         .show();
+
+
+                add_location.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in = new Intent(MapsActivity.this,MapPointActivity.class);
+                        in.putExtra("LATITUDE",xx);
+                        in.putExtra("LONGITUDE",yy);
+                        startActivity(in);
+                    }
+                });
             }
         });
 //
