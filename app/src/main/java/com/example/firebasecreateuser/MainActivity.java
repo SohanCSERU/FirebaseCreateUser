@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity{
         search_blood_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i  = new Intent(MainActivity.this, MapPointActivity.class);
+                Intent i  = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(i);
             }
         });

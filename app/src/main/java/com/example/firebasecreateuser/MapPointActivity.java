@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class MapPointActivity extends AppCompatActivity {
 
     private ListView listView;
+    ArrayList<LatLng>arrayList = new ArrayList<LatLng>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,14 @@ public class MapPointActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot snap: snapshot.getChildren()){
-                    list.add(snap.getKey());
+                    User user =  snap.getValue(User.class);
+                    String text = user.latitude;
+                    String text1 = user.longitude;
+
+                    Double lat = Double.parseDouble(text);
+                    Double lon = Double.parseDouble(text1);
+                    list.add(lat.toString());
+                    list.add(lon.toString());
                 }
                 adapter.notifyDataSetChanged();
             }

@@ -6,7 +6,8 @@ public class User {
     public String user_name,user_email,password;
     public String phone_number,blood_group;
     public String last_donation;
-    public String latitude, longitude;
+    public String latitude;
+    public String longitude;
 
     public User(){}
 
