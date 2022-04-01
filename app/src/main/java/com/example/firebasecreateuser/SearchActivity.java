@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.firebasecreateuser.databinding.ActivitySearchBinding;
 import com.google.firebase.database.DataSnapshot;
@@ -39,31 +41,6 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                arrayList.clear();
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    User user =  snap.getValue(User.class);
-//                    String text = user.latitude;
-//                    String text1 = user.longitude;
-                    list.add(user.blood_group);
-
-                    Double lat=30.00;
-                    Double lon=90.00;
-
-//                    Double lat = Double.parseDouble(user.latitude);
-//                    Double lon = Double.parseDouble(user.longitude);
-                    arrayList.add(new LatLng(lat,lon));
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     /**
@@ -79,16 +56,37 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        for (int i=0;i<arrayList.size();i++){
-            mMap.addMarker(new MarkerOptions().position(arrayList.get(i)).title(list.get(i)));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(24.0f));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(arrayList.get(i)));
-        }
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arrayList.clear();
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    User user =  snap.getValue(User.class);
+                    String text = user.latitude;
+                    String text1 = user.longitude;
+
+                    list.add(user.blood_group);
+
+                    Double lat = Double.parseDouble(user.latitude);
+                    Double lon = Double.parseDouble(user.longitude);
+
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(user.blood_group));
+
+                    mMap.animateCamera(CameraUpdateFactory.zoomTo(15f));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
 
 
-//        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(29.00  , 90.22);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
+
+
 }
