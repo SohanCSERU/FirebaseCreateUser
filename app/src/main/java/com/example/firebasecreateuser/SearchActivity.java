@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SearchActivity extends FragmentActivity implements OnMapReadyCallback {
+public class SearchActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
     private ActivitySearchBinding binding;
@@ -73,9 +73,7 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                     Double lat = Double.parseDouble(user.latitude);
                     Double lon = Double.parseDouble(user.longitude);
 
-                    Intent i = new Intent(SearchActivity.this,MapsActivity.class);
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).showInfoWindow();
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(15f));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
 
@@ -88,15 +86,14 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
 
             }
         });
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
-
-                return false;
-            }
-        });
-
     }
 
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+
+        Intent i = new Intent(SearchActivity.this,MainActivity.class);
+        startActivity(i);
+
+        return false;
+    }
 }
