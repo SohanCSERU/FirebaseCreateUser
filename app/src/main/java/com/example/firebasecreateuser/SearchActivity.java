@@ -3,6 +3,7 @@ package com.example.firebasecreateuser;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -71,7 +73,8 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                     Double lat = Double.parseDouble(user.latitude);
                     Double lon = Double.parseDouble(user.longitude);
 
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(user.blood_group));
+                    Intent i = new Intent(SearchActivity.this,MapsActivity.class);
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
 
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(15f));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
@@ -86,7 +89,14 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
             }
         });
 
-    }
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(@NonNull Marker marker) {
 
+                return false;
+            }
+        });
+
+    }
 
 }
