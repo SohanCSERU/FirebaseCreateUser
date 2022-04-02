@@ -5,8 +5,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+//    public static String LATITUDE = "latitude";
+//    public static String LONGITUDE = "longitude";
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
@@ -43,6 +48,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+//        add_location.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MapsActivity.this,MapPointActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     /**
@@ -85,12 +98,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 final double lat = latLng.latitude;
                 final double lo=latLng.longitude;
 
-                databaseReference.child("latitude").setValue(lat);
-                databaseReference.child("longitude").setValue(lo);
+                String xx = Double.toString(lat);
+                String yy = Double.toString(lo);
+
+
+
+//                databaseReference.child("latitude").setValue(lat);
+//                databaseReference.child("longitude").setValue(lo);
 
                 Toast.makeText(getApplicationContext(),
                         "New marker added: " + lat+ " Longitude point: "+ lo, Toast.LENGTH_LONG)
                         .show();
+
+
+                add_location.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent in = new Intent(MapsActivity.this,RegistrationActivity.class);
+                        in.putExtra("LATITUDE",xx);
+                        in.putExtra("LONGITUDE",yy);
+                        startActivity(in);
+                    }
+                });
             }
         });
 //

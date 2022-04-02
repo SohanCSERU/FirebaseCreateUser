@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,17 +17,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText editTextName,editTextEmail,editTextPassword,editTextCnfPassword,editPhoneNumber,editLatDonDate,editBloodGroup;
-    private TextView loginbtn_below;
+    private TextView loginbtn_below,setLatitudeBtn,setLongitudeBtn;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private Button register_btn,map_add_button;
-
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,17 +47,21 @@ public class RegistrationActivity extends AppCompatActivity {
         editBloodGroup = (EditText)findViewById(R.id.idEdtUserBloodGroup);
 
         register_btn = (Button)findViewById(R.id.idBtnRegister);
-        map_add_button = (Button)findViewById(R.id.idBtnAddLocMap);
+//        map_add_button = (Button)findViewById(R.id.idBtnAddLocMap);
 
         progressBar = (ProgressBar)findViewById(R.id.idPBLoading);
 
-        map_add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(RegistrationActivity.this,MapsActivity.class);
-                startActivity(i);
-            }
-        });
+
+
+        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
+        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
+
+        String text_lat = getIntent().getStringExtra("LATITUDE");
+        String text_lon = getIntent().getStringExtra("LONGITUDE");
+
+        setLatitudeBtn.setText(text_lat);
+        setLongitudeBtn.setText(text_lon);
+
 
         loginbtn_below.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -105,7 +111,8 @@ public class RegistrationActivity extends AppCompatActivity {
                                     phone,
                                     blood_group,
                                     last_donation_date,
-                                    password);
+                                    password,text_lat,text_lon);
+
                             FirebaseDatabase.getInstance().getReference("User")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

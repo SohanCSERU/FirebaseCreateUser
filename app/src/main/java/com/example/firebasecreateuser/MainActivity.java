@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
         register_at_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i  = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent i  = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(i);
             }
         });
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity{
         search_blood_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i  = new Intent(MainActivity.this, MapPointActivity.class);
+                Intent i  = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(i);
             }
         });

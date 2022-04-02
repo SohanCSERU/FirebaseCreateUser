@@ -6,16 +6,36 @@ public class User {
     public String user_name,user_email,password;
     public String phone_number,blood_group;
     public String last_donation;
+    public String latitude;
+    public String longitude;
 
     public User(){}
 
-    public User(String user_name, String user_email, String phone_number, String blood_group, String last_donation,String password) {
+    public User(String user_name, String user_email, String phone_number, String blood_group, String last_donation,String password,String text_lat,String text_lon) {
         this.user_name = user_name;
         this.user_email = user_email;
         this.phone_number = phone_number;
         this.blood_group = blood_group;
         this.last_donation = last_donation;
         this.password = password;
+        this.latitude = text_lat;
+        this.longitude = text_lon;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getUser_name() {
