@@ -76,8 +76,6 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                     mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).showInfoWindow();
                     mMap.animateCamera(CameraUpdateFactory.zoomTo(15f));
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
-
-
                 }
 
             }
