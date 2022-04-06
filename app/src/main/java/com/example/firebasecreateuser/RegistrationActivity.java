@@ -53,14 +53,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
 
-        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
-        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
+//        setLatitudeBtn = (TextView)findViewById(R.id.idLatitude);
+//        setLongitudeBtn = (TextView)findViewById(R.id.idLongitude);
 
         String text_lat = getIntent().getStringExtra("LATITUDE");
         String text_lon = getIntent().getStringExtra("LONGITUDE");
 
-        setLatitudeBtn.setText(text_lat);
-        setLongitudeBtn.setText(text_lon);
+//        setLatitudeBtn.setText(text_lat);
+//        setLongitudeBtn.setText(text_lon);
 
 
         loginbtn_below.setOnClickListener(new View.OnClickListener() {

@@ -98,7 +98,7 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                     mMarkerMap.put(marker, markerInfo);
 
 
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 9.0f));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 11.0f));
 
                     //Set this only once:
                     mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
