@@ -18,6 +18,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.firebasecreateuser.databinding.ActivityMapsBinding;
 import com.google.firebase.database.DatabaseReference;
@@ -124,8 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 //
 //        // Add a marker in Sydney and move the camera
-        LatLng dhaka = new LatLng(23.80, 90.38);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 13.0f));
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(dhaka));
     }
 }
