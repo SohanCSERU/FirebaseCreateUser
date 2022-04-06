@@ -125,7 +125,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 //
 //        // Add a marker in Sydney and move the camera
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 13.0f));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 15.0f));
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
     }
 }
