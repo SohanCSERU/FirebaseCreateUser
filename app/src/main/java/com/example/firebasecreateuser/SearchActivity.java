@@ -93,9 +93,23 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
 
 
 //                    Here is the code to add marker
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(user.blood_group));
-                    MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
-                    mMarkerMap.put(marker, markerInfo);
+                    String BldGroup,All;
+                    BldGroup = getIntent().getStringExtra("BLOOD");
+//                    All = getIntent().getStringExtra("ALL");
+
+
+                    //ADDED Blood Group Specific Search
+                    if(blood_group.equals(BldGroup)){
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(blood_group));
+                        MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
+                        mMarkerMap.put(marker, markerInfo);
+                    }
+                    else if (BldGroup.equals("ALL")){
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(blood_group));
+                        MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
+                        mMarkerMap.put(marker, markerInfo);
+                    }
+
 
 
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 11.0f));
@@ -137,50 +151,6 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
         });
     }
 
-
-//
-//
-//    void createMarkersFromJson(String json) throws JSONException {
-//
-//
-//        for (int i = 0; i < actors.length(); i++) {
-//            final JSONObject c = actors.getJSONObject(i);
-//
-//            final double g1 = Double.parseDouble(c.getString("gps1"));
-//            final double g2 = Double.parseDouble(c.getString("gps2"));
-//            LatLng poss = new LatLng(g1,g2);
-//
-//            final String user_name = c.getString("name");
-//            final String phone_number = c.getString("phone");
-//            final String blood_group = c.getString("last_donation");
-//            final String last_donation = c.getString("blood_group");
-//
-//            Marker marker = mMap.addMarker(new MarkerOptions().position(poss).title(title).icon(BitmapDescriptorFactory.fromResource(R.drawable.icon)));
-//
-////            MarkerInfo markerInfo = new MarkerInfo(title, place, place2, perexfull, img1, info);
-//            MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
-//
-//            mMarkerMap.put(marker, markerInfo);
-//        }
-//
-//        //Set this only once:
-//        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                MarkerInfo markerInfo = mMarkerMap.get(marker);
-//
-//
-//                Intent intent = new Intent(SearchActivity.this, MarkerInfo.class);
-//
-//                intent.putExtra("name", markerInfo.user_name);
-//                intent.putExtra("phone", markerInfo.phone_number);
-//                intent.putExtra("last_donation", markerInfo.last_donation);
-//                intent.putExtra("blood_group", markerInfo.blood_group);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
 
 
