@@ -11,7 +11,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -22,9 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,14 +87,18 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                     Double lat = Double.parseDouble(user.latitude);
                     Double lon = Double.parseDouble(user.longitude);
 
+//
+//                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).showInfoWindow();
+//                    mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
+
+
 //                    Here is the code to add marker
                     Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(user.blood_group));
                     MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
                     mMarkerMap.put(marker, markerInfo);
-//
-//                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).showInfoWindow();
-//                    mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 11.0f));
+
+
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 9.0f));
 
                     //Set this only once:
                     mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -107,12 +107,12 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                         public void onInfoWindowClick(Marker marker) {
                             MarkerInfo markerInfo = mMarkerMap.get(marker);
                             User user =  snap.getValue(User.class);
-                            Intent intent = new Intent(SearchActivity.this, MarkerInfo.class);
+                            Intent intent = new Intent(SearchActivity.this, UserInfoMark.class);
 
-                            intent.putExtra(user.user_name, markerInfo.user_name);
-                            intent.putExtra(user.phone_number, markerInfo.phone_number);
-                            intent.putExtra(user.last_donation, markerInfo.last_donation);
-                            intent.putExtra(user.blood_group, markerInfo.blood_group);
+                            intent.putExtra("user_name", markerInfo.user_name);
+                            intent.putExtra("phone_number", markerInfo.phone_number);
+                            intent.putExtra("last_donation", markerInfo.last_donation);
+                            intent.putExtra("blood_group", markerInfo.blood_group);
                             startActivity(intent);
                         }
                     });
