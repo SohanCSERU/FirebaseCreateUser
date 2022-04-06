@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +40,9 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
     ArrayList<String> list = new ArrayList<>();
     private String name;
 
+    TextView search_blood_result;
+    Button search_to_home_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,16 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        search_blood_result = findViewById(R.id.search_blood_result);
+        search_to_home_btn = findViewById(R.id.back_to_home);
+
+        search_to_home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SearchActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 
@@ -66,6 +82,14 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setCompassEnabled(true);
+        googleMap.getUiSettings().setZoomGesturesEnabled(true);
+        googleMap.getUiSettings().setScrollGesturesEnabled(true);
+        googleMap.getUiSettings().setRotateGesturesEnabled(true);
+
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -93,12 +117,30 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
 
 
 //                    Here is the code to add marker
-                    Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(user.blood_group));
-                    MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
-                    mMarkerMap.put(marker, markerInfo);
+                    String BldGroup,All;
+                    BldGroup = getIntent().getStringExtra("BLOOD");
+//                    All = getIntent().getStringExtra("ALL");
 
 
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 11.0f));
+                    //ADDED Blood Group Specific Search
+                    if(blood_group.equals(BldGroup)){
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(blood_group));
+                        MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
+                        mMarkerMap.put(marker, markerInfo);
+
+                        search_blood_result.setText("Showing Result for: "+blood_group);
+                    }
+                    else if (BldGroup.equals("ALL")){
+                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(blood_group));
+                        MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
+                        mMarkerMap.put(marker, markerInfo);
+
+                        search_blood_result.setText("Showing Result for ALL Group");
+                    }
+
+
+
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 12.0f));
 
                     //Set this only once:
                     mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -137,50 +179,6 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
         });
     }
 
-
-//
-//
-//    void createMarkersFromJson(String json) throws JSONException {
-//
-//
-//        for (int i = 0; i < actors.length(); i++) {
-//            final JSONObject c = actors.getJSONObject(i);
-//
-//            final double g1 = Double.parseDouble(c.getString("gps1"));
-//            final double g2 = Double.parseDouble(c.getString("gps2"));
-//            LatLng poss = new LatLng(g1,g2);
-//
-//            final String user_name = c.getString("name");
-//            final String phone_number = c.getString("phone");
-//            final String blood_group = c.getString("last_donation");
-//            final String last_donation = c.getString("blood_group");
-//
-//            Marker marker = mMap.addMarker(new MarkerOptions().position(poss).title(title).icon(BitmapDescriptorFactory.fromResource(R.drawable.icon)));
-//
-////            MarkerInfo markerInfo = new MarkerInfo(title, place, place2, perexfull, img1, info);
-//            MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
-//
-//            mMarkerMap.put(marker, markerInfo);
-//        }
-//
-//        //Set this only once:
-//        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                MarkerInfo markerInfo = mMarkerMap.get(marker);
-//
-//
-//                Intent intent = new Intent(SearchActivity.this, MarkerInfo.class);
-//
-//                intent.putExtra("name", markerInfo.user_name);
-//                intent.putExtra("phone", markerInfo.phone_number);
-//                intent.putExtra("last_donation", markerInfo.last_donation);
-//                intent.putExtra("blood_group", markerInfo.blood_group);
-//                startActivity(intent);
-//            }
-//        });
-//    }
 
 
 

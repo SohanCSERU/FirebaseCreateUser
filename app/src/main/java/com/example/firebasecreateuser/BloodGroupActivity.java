@@ -25,6 +25,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","A+");
                 startActivity(i);
             }
         });
@@ -33,6 +34,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","A-");
                 startActivity(i);
             }
         });
@@ -41,6 +43,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","B+");
                 startActivity(i);
             }
         });
@@ -49,6 +52,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","B-");
                 startActivity(i);
             }
         });
@@ -58,6 +62,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","O+");
                 startActivity(i);
             }
         });
@@ -66,6 +71,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","O-");
                 startActivity(i);
             }
         });
@@ -75,6 +81,7 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","AB+");
                 startActivity(i);
             }
         });
@@ -83,15 +90,17 @@ public class BloodGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","AB-");
                 startActivity(i);
             }
         });
 
-        blood_group_home = findViewById(R.id.blood_group_from_home);
+        blood_group_home = findViewById(R.id.blood_group_all);
         blood_group_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i  = new Intent(BloodGroupActivity.this, MainActivity.class);
+                Intent i  = new Intent(BloodGroupActivity.this, SearchActivity.class);
+                i.putExtra("BLOOD","ALL");
                 startActivity(i);
             }
         });
