@@ -21,7 +21,7 @@ public class UserInfoMark extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.30));
+        getWindow().setLayout((int)(width*.8),(int)(height*.26));
 
 
         user_name = findViewById(R.id.marker_info_show_Name);

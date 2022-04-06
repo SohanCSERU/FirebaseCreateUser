@@ -5,6 +5,9 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,6 +40,9 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
     ArrayList<String> list = new ArrayList<>();
     private String name;
 
+    TextView search_blood_result;
+    Button search_to_home_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,16 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        search_blood_result = findViewById(R.id.search_blood_result);
+        search_to_home_btn = findViewById(R.id.back_to_home);
+
+        search_to_home_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SearchActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
 
@@ -103,11 +119,15 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                         Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(blood_group));
                         MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
                         mMarkerMap.put(marker, markerInfo);
+
+                        search_blood_result.setText("Showing Result for: "+blood_group);
                     }
                     else if (BldGroup.equals("ALL")){
                         Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)).title(blood_group));
                         MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
                         mMarkerMap.put(marker, markerInfo);
+
+                        search_blood_result.setText("Showing Result for ALL Group");
                     }
 
 
