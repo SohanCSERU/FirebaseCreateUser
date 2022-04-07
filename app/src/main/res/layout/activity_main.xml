@@ -8,13 +8,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/blood_donation"
-        android:scaleType="fitCenter"
-        />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:srcCompat="@drawable/blood_donation"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
