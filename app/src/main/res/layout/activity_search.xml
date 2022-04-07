@@ -16,7 +16,6 @@ tools:context=".SearchActivity">
     android:layout_alignParentTop="true"
     android:layout_alignParentBottom="true" />
 <LinearLayout
-    android:id="@+id/validity"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -34,15 +33,37 @@ tools:context=".SearchActivity">
         android:textColor="@color/black"
         android:background="@color/text_view_color"
         />
-    <Button
-        android:id="@+id/back_to_home"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/ic_home"
-        android:layout_gravity="right|end"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        />
 </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/validity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+
+        android:background="@color/white"
+        android:layout_gravity="bottom|center_horizontal"
+        >
+
+        <Button
+            android:id="@+id/back_to_home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_home"
+            android:layout_marginRight="20dp"
+
+            />
+
+        <Button
+            android:id="@+id/search_blood_at_search_activity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_blood_search"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
 
 </FrameLayout>

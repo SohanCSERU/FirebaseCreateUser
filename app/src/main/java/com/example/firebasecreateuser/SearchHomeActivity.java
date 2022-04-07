@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.firebasecreateuser.databinding.ActivitySearchBinding;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,19 +17,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.firebasecreateuser.databinding.ActivitySearchBinding;
+import com.example.firebasecreateuser.databinding.ActivitySearchHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class SearchHomeActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     Map<Marker, MarkerInfo> mMarkerMap = new HashMap<>();
@@ -61,14 +60,14 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
         search_to_blood_show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SearchActivity.this,BloodGroupActivity.class);
+                Intent i = new Intent(SearchHomeActivity.this,BloodGroupActivity.class);
                 startActivity(i);
             }
         });
         search_to_home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(SearchActivity.this,MainActivity.class);
+                Intent i = new Intent(SearchHomeActivity.this,MainActivity.class);
                 startActivity(i);
             }
         });
@@ -108,51 +107,24 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                     String text = user.latitude;
                     String text1 = user.longitude;
 
-                     String user_name = user.user_name;
-                     String phone_number = user.phone_number;
-                     String blood_group = user.blood_group;
-                     String last_donation = user.last_donation;
+                    String user_name = user.user_name;
+                    String phone_number = user.phone_number;
+                    String blood_group = user.blood_group;
+                    String last_donation = user.last_donation;
 
                     list.add(user.blood_group);
 
                     Double lat = Double.parseDouble(user.latitude);
                     Double lon = Double.parseDouble(user.longitude);
 
-//
-//                    mMap.addMarker(new MarkerOptions().position(new LatLng(lat, lon)).title(user.blood_group)).showInfoWindow();
-//                    mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat,lon)));
 
-
-//                    Here is the code to add marker
-                    String BldGroup,All;
-                    BldGroup = getIntent().getStringExtra("BLOOD");
-//                    All = getIntent().getStringExtra("ALL");
-
-
-                    //ADDED Blood Group Specific Search
-                    if(blood_group.equals(BldGroup)){
-                        Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)));
-                        marker.setTitle(blood_group);
-//                        marker.showInfoWindow();
-
-                        MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
-                        mMarkerMap.put(marker, markerInfo);
-
-                        search_blood_result.setText("Showing Result for: "+blood_group);
-                    }
-                    else if (BldGroup.equals("ALL")){
                         Marker marker;
                         marker = mMap.addMarker(new MarkerOptions().position(new LatLng(lat,lon)));
                         marker.setTitle(blood_group);
 //                        marker.showInfoWindow();
-
                         MarkerInfo markerInfo = new MarkerInfo(user_name,  phone_number,  blood_group,  last_donation);
                         mMarkerMap.put(marker, markerInfo);
-
                         search_blood_result.setText("Showing Result for ALL Group");
-                    }else
-                        continue;
-
 
 
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(24.370706,88.636881), 12.0f));
@@ -162,7 +134,7 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
                         public boolean onMarkerClick(@NonNull Marker marker) {
                             MarkerInfo markerInfo = mMarkerMap.get(marker);
                             User user =  snap.getValue(User.class);
-                            Intent intent = new Intent(SearchActivity.this, UserInfoMark.class);
+                            Intent intent = new Intent(SearchHomeActivity.this, UserInfoMark.class);
 
                             intent.putExtra("user_name", markerInfo.user_name);
                             intent.putExtra("phone_number", markerInfo.phone_number);
@@ -209,15 +181,4 @@ public class SearchActivity extends FragmentActivity implements OnMapReadyCallba
         });
     }
 
-
-
-
-    @Override
-    public boolean onMarkerClick(@NonNull Marker marker) {
-
-        Intent i = new Intent(SearchActivity.this,MainActivity.class);
-        startActivity(i);
-
-        return false;
-    }
 }

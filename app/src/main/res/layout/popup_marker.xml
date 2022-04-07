@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/marker_info_show_phone"
-        android:hint="Info show"
+        android:drawableLeft="@drawable/ic_baseline_call_24"
         android:padding="2dp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
