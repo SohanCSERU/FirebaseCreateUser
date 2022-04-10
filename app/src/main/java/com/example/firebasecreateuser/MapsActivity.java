@@ -103,7 +103,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String yy = Double.toString(lo);
 
 
-
 //                databaseReference.child("latitude").setValue(lat);
 //                databaseReference.child("longitude").setValue(lo);
 
