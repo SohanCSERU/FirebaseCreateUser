@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             //redirecte to user profile
-                            startActivity(new Intent(LoginActivity.this,RegistrationActivity.class));
+                            startActivity(new Intent(LoginActivity.this,MapsActivity.class));
                         }
                         else{
                             Toast.makeText(LoginActivity.this,"Failed to login!",Toast.LENGTH_LONG).show();
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // on below line opening a login activity.
-                Intent i = new Intent(LoginActivity.this, RegistrationActivity.class);
+                Intent i = new Intent(LoginActivity.this, MapsActivity.class);
                 startActivity(i);
             }
         });
