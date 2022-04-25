@@ -29,6 +29,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//This is the Launcher activity
+//that will show the Existing Blood Group
+//in the map with marker
+
+
 public class SearchActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;

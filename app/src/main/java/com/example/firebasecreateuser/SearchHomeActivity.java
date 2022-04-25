@@ -28,6 +28,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+This is the Launcher activity
+that will show the Existing Blood Group
+in the map with marker
+*/
+/* Only Difference between search activity is
+* here Latitude and Longitude do not indented*/
+
 public class SearchHomeActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
